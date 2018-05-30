@@ -27,7 +27,7 @@ Basic level usage is shown below.
 
 ZN\ZN::run();
 
-$thumbPath = Thumb::path(FILES_DIR . 'images/wallpaper.jpg')
+$thumbPath = Thumb::path('images/wallpaper.jpg')
                   ->quality(80)
                   ->crop(100, 200)
                   ->resize(300, 200)
