@@ -480,127 +480,6 @@ class GD implements GDInterface
     }
 
     /**
-     * Set closest
-     * 
-     * @param string $rgb
-     * 
-     * @return int
-     */
-    public function closest(String $rgb) : Int
-    {
-        return $this->getImageColor($rgb, 'imagecolorclosestalpha');
-    }
-
-    /**
-     * Set resolve
-     * 
-     * @param string $rgb
-     * 
-     * @return int
-     */
-    public function resolve(String $rgb) : Int
-    {
-        return $this->getImageColor($rgb, 'imagecolorresolvealpha');
-    }
-
-    /**
-     * Set index
-     * 
-     * @param string $rgb
-     * 
-     * @return int
-     */
-    public function index(String $rgb) : Int
-    {
-        return $this->getImageColor($rgb, 'imagecolorexactalpha');
-    }
-
-    /**
-     * Set pixel index
-     * 
-     * @param int $x
-     * @param int $y
-     * 
-     * @return int
-     */
-    public function pixelIndex(Int $x, Int $y) : Int
-    {
-        return imagecolorat($this->canvas, $x, $y);
-    }
-
-    /**
-     * Set closest hwb
-     * 
-     * @param string $rgb
-     * 
-     * @return int
-     */
-    public function closestHwb(String $rgb) : Int
-    {
-        return $this->getImageColor($rgb, 'imagecolorclosesthwb');
-    }
-
-    /**
-     * Match
-     * 
-     * @param resource $sourceImage
-     * 
-     * @return GD
-     */
-    public function match($sourceImage) : GD
-    {
-        if( ! Base::isResourceObject($sourceImage) )
-        {
-            throw new InvalidArgumentException(NULL, '[resource]');
-        }
-
-        imagecolormatch($this->canvas, $sourceImage);
-
-        return $this;
-    }
-
-    /**
-     * Set
-     * 
-     * @param int    $index
-     * @param string $rgb = NULL
-     * 
-     * @return GD
-     */
-    public function set(Int $index, String $rgb = NULL) : GD
-    {
-        $rgb = $index . '|' . (ColorConverter::run($this->color ?? $rgb));
-
-        $this->getImageColor($rgb, 'imagecolorset');
-
-        return $this;
-    }
-
-    /**
-     * Total
-     * 
-     * @return int
-     */
-    public function total() : Int
-    {
-        return imagecolorstotal($this->canvas);
-    }
-
-    /**
-     * Set transparent
-     * 
-     * @param string $rgb
-     * 
-     * @return GD
-     */
-    public function transparent(String $rgb) : GD
-    {
-        imagecolortransparent($this->canvas, $this->allocate($rgb));
-
-        return $this;
-    }
-
-    /**
      * Set convolution
      * 
      * @param array $matrix
@@ -851,30 +730,6 @@ class GD implements GDInterface
     }
 
     /**
-     * Set font height
-     * 
-     * @param int $height
-     * 
-     * @return int
-     */
-    public function fontHeight(Int $height) : Int
-    {
-        return imagefontheight($height);
-    }
-
-    /**
-     * Set font width
-     * 
-     * @param int $width
-     * 
-     * @return int
-     */
-    public function fontWidth(Int $width) : Int
-    {
-        return imagefontwidth($width);
-    }
-
-    /**
      * Get screenshot
      * 
      * @return GD
@@ -957,20 +812,6 @@ class GD implements GDInterface
     }
 
     /**
-     * Set style
-     * 
-     * @param array $style
-     * 
-     * @return GD
-     */
-    public function style(Array $style) : GD
-    {
-        imagesetstyle($this->canvas, $style);
-
-        return $this;
-    }
-
-    /**
      * Set thickness
      * 
      * @param int $thickness = 1
@@ -1004,21 +845,6 @@ class GD implements GDInterface
     }
 
     /**
-     * Set window display
-     * 
-     * @param int $window
-     * @param int $clientArea = 0
-     * 
-     * @return GD
-     */
-    public function windowDisplay(Int $window, Int $clientArea = 0) : GD
-    {
-        $this->canvas = imagegrabwindow($window, $clientArea);
-
-        return $this;
-    }
-
-    /**
      * Set layer effect
      * 
      * @param string $effect = 'normal'
@@ -1030,70 +856,6 @@ class GD implements GDInterface
         imagelayereffect($this->canvas, Helper::toConstant($effect, 'IMG_EFFECT_'));
 
         return $this;
-    }
-
-    /**
-     * Set load font
-     * 
-     * @param string $file
-     * 
-     * @return int
-     */
-    public function loadFont(String $file) : Int
-    {
-        if( ! is_file($file) )
-        {
-            throw new InvalidArgumentException(NULL, '[file]');
-        }
-
-        return imageloadfont($file);
-    }
-
-    /**
-     * Get copy palette
-     * 
-     * @param resource $source
-     * 
-     * @return resource
-     */
-    public function copyPalette($source)
-    {
-        if( ! Base::isResourceObject($source) )
-        {
-            throw new InvalidArgumentException(NULL, '[resource]');
-        }
-
-        imagepalettecopy($this->canvas, $source);
-    }
-
-    /**
-     * Get canvas width
-     * 
-     * @return int
-     */
-    public function canvasWidth() : Int
-    {
-        return imagesx($this->canvas);
-    }
-
-    /**
-     * Get canvas height
-     * 
-     * @return int
-     */
-    public function canvasHeight() : Int
-    {
-        return imagesy($this->canvas);
-    }
-
-    /**
-     * Get types
-     * 
-     * @return int
-     */
-    public function types() : Int
-    {
-        return imagetypes();
     }
 
     /**
