@@ -145,15 +145,18 @@ class GD implements GDInterface
      */
     public function size(String $fileName) : stdClass
     {
-        if( $this->mime->type($fileName, 0) === 'image' )
+        $data = [];
+
+        if( in_array(strlen(pathinfo($fileName, PATHINFO_EXTENSION)), [3, 4]) && $this->mime->type($fileName, 0) === 'image' )
         {
             $data = getimagesize($fileName);
         }
-        elseif( is_string($fileName) )
+        else if( is_string($fileName) )
         {
             $data = getimagesizefromstring($fileName);
         }
-        else
+        
+        if( empty($data) )
         {
             throw new InvalidArgumentException(NULL, '[file]');
         }
@@ -192,73 +195,6 @@ class GD implements GDInterface
     public function mime(String $type = 'jpeg') : String
     {
         return image_type_to_mime_type(Helper::toConstant($type, 'IMAGETYPE_'));
-    }
-
-    /**
-     * To WBMP
-     * 
-     * @param string $fileName
-     * @param int    $threshold = NULL
-     * 
-     * @return GD
-     */
-    public function toWbmp(String $fileName = NULL, Int $threshold = NULL) : GD
-    {
-        image2wbmp($this->canvas, $fileName, $threshold);
-
-        return $this;
-    }
-
-    /**
-     * JPEG to WBMP
-     * 
-     * @param string $pngFile
-     * @param string $wbmpFile
-     * @param array  $settings = []
-     * 
-     * @return bool
-     */
-    public function jpegToWbmp(String $jpegFile, String $wbmpFile, Array $settings = []) : Bool
-    {
-        if( is_file($jpegFile) )
-        {
-            $height    = $settings['height']    ?? $this->height    ?? 0;
-            $width     = $settings['width']     ?? $this->width     ?? 0;
-            $threshold = $settings['threshold'] ?? $this->threshold ?? 0;
-
-            $this->defaultRevolvingVariables();
-
-            return jpeg2wbmp($jpegFile, $wbmpFile, $height, $width, $threshold);
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    /**
-     * PNG to WBMP
-     * 
-     * @param string $pngFile
-     * @param string $wbmpFile
-     * @param array  $settings = []
-     * 
-     * @return bool
-     */
-    public function pngToWbmp(String $pngFile, String $wbmpFile, Array $settings = []) : Bool
-    {
-        if( is_file($pngFile) )
-        {
-            $height    = $settings['height']    ?? 0;
-            $width     = $settings['width']     ?? 0;
-            $threshold = $settings['threshold'] ?? 0;
-
-            return png2wbmp($pngFile, $wbmpFile, $height, $width, $threshold);
-        }
-        else
-        {
-            return false;
-        }
     }
 
     /**

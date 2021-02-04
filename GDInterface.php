@@ -69,38 +69,6 @@ interface GDInterface
     public function mime(String $type = 'jpeg') : String;
 
     /**
-     * To WBMP
-     * 
-     * @param string $fileName
-     * @param int    $threshold = NULL
-     * 
-     * @return GD
-     */
-    public function toWbmp(String $fileName = NULL, Int $threshold = NULL) : GD;
-
-    /**
-     * JPEG to WBMP
-     * 
-     * @param string $pngFile
-     * @param string $wbmpFile
-     * @param array  $settings = []
-     * 
-     * @return bool
-     */
-    public function jpegToWbmp(String $jpegFile, String $wbmpFile, Array $settings = []) : Bool;
-
-    /**
-     * PNG to WBMP
-     * 
-     * @param string $pngFile
-     * @param string $wbmpFile
-     * @param array  $settings = []
-     * 
-     * @return bool
-     */
-    public function pngToWbmp(String $pngFile, String $wbmpFile, Array $settings = []) : Bool;
-
-    /**
      * Sets alpha blending
      * 
      * @param bool $blendMode = NULL
