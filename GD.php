@@ -48,14 +48,6 @@ class GD implements GDInterface
     protected $mime;
 
     /**
-     * Magic Set
-     */
-    protected function __set($property, $value)
-    {
-        $this->$property = $value;
-    }
-
-    /**
      * Magic Constructor
      */
     public function __construct()
