@@ -25,6 +25,13 @@ class Thumb implements ThumbInterface
     protected $sets;
 
     /**
+     * Keeps render class
+     * 
+     * @var object
+     */
+    protected $image;
+
+    /**
      * Magic Constructor
      */
     public function __construct()
@@ -205,7 +212,7 @@ class Thumb implements ThumbInterface
     {
         if( ! isset($this->sets['filePath']) )
         {
-            return false;
+            return false; // @codeCoverageIgnore
         }
 
         return $this->image->getProsize($this->sets['filePath'], $width, $height);

@@ -43,6 +43,19 @@ class GD implements GDInterface
     protected $output = true;
 
     /**
+     * Keeps mime class
+     */
+    protected $mime;
+
+    /**
+     * Magic Set
+     */
+    protected function __set($property, $value)
+    {
+        $this->$property = $value;
+    }
+
+    /**
      * Magic Constructor
      */
     public function __construct()
@@ -111,7 +124,7 @@ class GD implements GDInterface
 
         if( ! function_exists($function) )
         {
-            throw new InvalidImageFileException(NULL, $source);
+            throw new InvalidImageFileException(NULL, $source); // @codeCoverageIgnore
         }
 
         return $function($source);
@@ -507,7 +520,7 @@ class GD implements GDInterface
 
         if( ! Base::isResourceObject($source) )
         {
-            throw new InvalidArgumentException(NULL, '[resource]');
+            throw new InvalidArgumentException(NULL, '[resource]'); // @codeCoverageIgnore
         }
 
         $this->alignImageWatermark($file);
@@ -543,7 +556,7 @@ class GD implements GDInterface
 
         if( ! Base::isResourceObject($source) )
         {
-            throw new InvalidArgumentException(NULL, '[resource]');
+            throw new InvalidArgumentException(NULL, '[resource]'); // @codeCoverageIgnore
         }
         
         $this->alignImageWatermark($file);
@@ -595,7 +608,7 @@ class GD implements GDInterface
 
         if( ! Base::isResourceObject($source) )
         {
-            throw new InvalidArgumentException(NULL, '[resource]');
+            throw new InvalidArgumentException(NULL, '[resource]'); // @codeCoverageIgnore
         }
 
         $this->alignImageWatermark($file);
@@ -714,6 +727,8 @@ class GD implements GDInterface
      * Get screenshot
      * 
      * @return GD
+     *  
+     * @codeCoverageIgnore
      */
     public function screenshot() : GD
     {
