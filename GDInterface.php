@@ -182,6 +182,16 @@ interface GDInterface
     public function text(string $text, array $settings = []) : GD;
 
     /**
+     * Creates ttftext
+     * 
+     * @param string $text
+     * @param array  $settings = []
+     * 
+     * @return GD
+     */
+    public function tfftext(string $text, array $settings = []) : GD;
+
+    /**
      * Set convolution
      * 
      * @param array $matrix
@@ -287,7 +297,7 @@ interface GDInterface
      */
     public function screenshot() : GD;
 
-    /**
+     /**
      * Set rotate
      * 
      * @param float  $angle
@@ -296,7 +306,7 @@ interface GDInterface
      * @return GD
      */
     public function rotate(Float $angle, string $spaceColor = '0|0|0') : GD;
-
+    
     /**
      * Set scale
      * 
