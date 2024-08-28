@@ -19,6 +19,13 @@ interface GDInterface
     public function info() : array;
 
     /**
+     * Load ttf font
+     * 
+     * @return GD
+     */
+    public function load($ttfpath) : GD;
+
+    /**
      * Sets canvas
      * 
      * @param mixed $width
@@ -297,7 +304,7 @@ interface GDInterface
      */
     public function screenshot() : GD;
 
-     /**
+    /**
      * Set rotate
      * 
      * @param float  $angle
@@ -306,7 +313,7 @@ interface GDInterface
      * @return GD
      */
     public function rotate(Float $angle, string $spaceColor = '0|0|0') : GD;
-    
+
     /**
      * Set scale
      * 
